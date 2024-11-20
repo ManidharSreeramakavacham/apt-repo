@@ -493,7 +493,7 @@ ResultState HttpServerState::Open()
 	 return result;
 
       result = UnwrapSocks(ServerName.Host, ServerName.Port == 0 ? DefaultPort : ServerName.Port,
-			   Proxy, ServerFd, Owner->ConfigFindI("TimeOut", 5), Owner);
+			   Proxy, ServerFd, Owner->ConfigFindI("TimeOut", 50), Owner);
       if (result != ResultState::SUCCESSFUL)
 	 return result;
    }
@@ -538,7 +538,7 @@ ResultState HttpServerState::Open()
       }
       if (Host == Proxy.Host && tls)
       {
-	 result = UnwrapHTTPConnect(ServerName.Host, ServerName.Port == 0 ? DefaultPort : ServerName.Port, Proxy, ServerFd, Owner->ConfigFindI("TimeOut",  5), Owner);
+	 result = UnwrapHTTPConnect(ServerName.Host, ServerName.Port == 0 ? DefaultPort : ServerName.Port, Proxy, ServerFd, Owner->ConfigFindI("TimeOut",  50), Owner);
 	 if (result != ResultState::SUCCESSFUL)
 	    return result;
       }
